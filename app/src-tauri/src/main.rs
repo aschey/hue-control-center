@@ -30,6 +30,18 @@ fn main() {
   let app = tauri::Builder::default()
     .system_tray(tray)
     .on_system_tray_event(|app, event| match event {
+      SystemTrayEvent::LeftClick { .. } => {
+        let window = app.get_window("main").unwrap();
+        let mut pos = POS.lock().unwrap();
+        if window.is_visible().unwrap() {
+          *pos = window.inner_position().unwrap();
+
+          window.hide().unwrap();
+        } else {
+          window.set_position(Position::Physical(*pos));
+          window.show().unwrap();
+        }
+      }
       SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
         "quit" => {
           std::process::exit(0);
@@ -38,7 +50,7 @@ fn main() {
           let window = app.get_window("main").unwrap();
           let mut pos = POS.lock().unwrap();
           *pos = window.inner_position().unwrap();
-          println!("{:?}", pos);
+
           window.hide().unwrap();
         }
         "show" => {
@@ -55,7 +67,7 @@ fn main() {
       app.create_window(
         "main".to_string(),
         Default::default(),
-        |WinAttrs, WebviewAttrs| (WinAttrs, WebviewAttrs),
+        |win_attrs, webview_attrs| (win_attrs, webview_attrs),
       );
       Ok(())
     })
