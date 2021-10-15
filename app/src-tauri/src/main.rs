@@ -8,7 +8,7 @@ use std::sync::Mutex;
 use lazy_static::lazy_static;
 use tauri::{
   CustomMenuItem, Event, Manager, PhysicalPosition, Position, SystemTray, SystemTrayEvent,
-  SystemTrayMenu, SystemTrayMenuItem, WindowBuilder,
+  SystemTrayMenu, SystemTrayMenuItem,
 };
 lazy_static! {
   static ref POS: Mutex<PhysicalPosition::<i32>> =
@@ -44,7 +44,8 @@ fn main() {
       }
       SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
         "quit" => {
-          std::process::exit(0);
+          let window = app.get_window("main").unwrap();
+          window.close().unwrap();
         }
         "hide" => {
           let window = app.get_window("main").unwrap();
@@ -63,14 +64,7 @@ fn main() {
       },
       _ => {}
     })
-    .setup(|app| {
-      app.create_window(
-        "main".to_string(),
-        Default::default(),
-        |win_attrs, webview_attrs| (win_attrs, webview_attrs),
-      );
-      Ok(())
-    })
+    .plugin(tauri_plugin_window_state::WindowState::default())
     .build(tauri::generate_context!())
     .expect("error while running tauri application");
 
@@ -82,7 +76,7 @@ fn main() {
       std::thread::spawn(move || {
         let mut pos = POS.lock().unwrap();
         *pos = window.inner_position().unwrap();
-        window.hide();
+        window.hide().unwrap();
       });
     }
     _ => {}

@@ -19,20 +19,22 @@ import {
   NumberDecrementStepper,
   Select,
 } from '@chakra-ui/react';
-import { CheckCircleIcon } from '@chakra-ui/icons';
 import './App.css';
-import { ListCard } from './components/ListCard';
-import { SettingButton } from './components/SettingButton';
 import { SettingList } from './components/SettingList';
 
 const App: React.FC<{}> = () => {
   return (
-    <Grid bg='gray.600' w='100%' h='100%' templateRows='repeat(2, 1fr)'>
-      <Flex alignItems='center' flexDirection='column'>
+    <Grid bg='gray.600' w='100%' h='100%' autoRows='auto'>
+      <Flex align='center' flexDirection='column'>
         <SettingList />
       </Flex>
-      <Box padding={5}>
-        <Container minHeight='100%' borderRadius='5px' borderColor='gray.100' borderWidth='1px'>
+      <Box p={5}>
+        <Container
+          minHeight='100%'
+          borderRadius='5px'
+          borderColor='gray.100'
+          borderWidth='1px'
+        >
           <FormControl>
             <FormLabel>Change Interval</FormLabel>
             <Flex>

@@ -56,6 +56,12 @@
       "all": true
     },
     "windows": [
+      {
+        "title": "app",
+        "width": 800,
+        "height": 600,
+        "visible": false
+      }
     ],
     "security": {
       "csp": "default-src blob: data: filesystem: ws: wss: http: https: tauri: 'unsafe-eval' 'unsafe-inline' 'self' img-src: 'self'"
