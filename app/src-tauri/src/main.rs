@@ -28,8 +28,8 @@ fn show_window(app: &AppHandle<Wry>) {
     let pos = POS.lock().unwrap();
     window.set_position(Position::Physical(*pos)).unwrap();
     window.unminimize().unwrap();
-    window.set_focus().unwrap();
     window.show().unwrap();
+    window.set_focus().unwrap();
 }
 
 fn main() {
