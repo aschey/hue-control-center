@@ -18,7 +18,7 @@ lazy_static! {
 fn hide_window(app: &AppHandle<Wry>) {
     let window = app.get_window("main").unwrap();
     let mut pos = POS.lock().unwrap();
-    *pos = window.inner_position().unwrap();
+    *pos = window.outer_position().unwrap();
 
     window.hide().unwrap();
 }

@@ -5,9 +5,7 @@ import { ListCard } from './ListCard';
 export const SettingButton: React.FC<{}> = () => {
   return (
     <ListCard>
-      <Button colorScheme='blue' width='200px'>
-        Test
-      </Button>
+      <Button width='200px'>Test</Button>
     </ListCard>
   );
 };
