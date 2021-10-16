@@ -1,0 +1,7 @@
+requests
+colormath
+qhue
+python-dotenv
+flask
+flask_restx
+flask-cors

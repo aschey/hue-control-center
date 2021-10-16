@@ -1,6 +1,5 @@
 import re
 import requests
-import yaml
 import time
 import os
 from qhue import Bridge
