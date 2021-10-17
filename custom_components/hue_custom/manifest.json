@@ -1,0 +1,16 @@
+{
+    "domain": "hue_custom",
+    "name": "hue_custom",
+    "config_flow": true,
+    "documentation": "https://www.home-assistant.io/integrations/hue_custom",
+    "requirements": [],
+    "ssdp": [],
+    "zeroconf": [],
+    "homekit": {},
+    "dependencies": [],
+    "codeowners": [
+      "@aschey"
+    ],
+    "iot_class": "local_push",
+    "version": "0.0.0"
+  }

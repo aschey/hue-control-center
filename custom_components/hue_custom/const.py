@@ -1,0 +1,1 @@
+DOMAIN = "hue_custom"
